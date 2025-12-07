@@ -4,12 +4,11 @@ FROM n8nio/n8n:latest
 USER root
 
 # Actualiza e instala FFmpeg (y opcionales como curl/wget si los necesitas)
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     ffmpeg \
     curl \
     wget \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/cache/apk/*
 
 # Vuelve al usuario node para seguridad
 USER node
